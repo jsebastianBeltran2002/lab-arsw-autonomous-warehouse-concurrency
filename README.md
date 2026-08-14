@@ -23,7 +23,3 @@ java -cp target/classes edu.eci.arsw.warehouse.verification.RaceConditionProbe 1
 # Demo de pausa/reanudación
 java -cp target/classes edu.eci.arsw.warehouse.app.PauseResumeDemo
 ```
-
-## Documentación
-
-- [`ARSW_2026-2_Lab2_Entrega_Warehouse.docx`](ARSW_2026-2_Lab2_Entrega_Warehouse.docx) — entrega completa (diagnóstico, invariantes, decisión de diseño y verificación)
