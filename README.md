@@ -26,6 +26,4 @@ java -cp target/classes edu.eci.arsw.warehouse.app.PauseResumeDemo
 
 ## Documentación
 
-- [`docs/REPORT.md`](docs/REPORT.md) — diagnóstico, invariantes y verificación
-- [`docs/ADR-001-concurrency-control.md`](docs/ADR-001-concurrency-control.md) — decisión de diseño
-- [`ARSW_2026-2_Lab2_Entrega_Warehouse.docx`](ARSW_2026-2_Lab2_Entrega_Warehouse.docx) — entrega completa
+- [`ARSW_2026-2_Lab2_Entrega_Warehouse.docx`](ARSW_2026-2_Lab2_Entrega_Warehouse.docx) — entrega completa (diagnóstico, invariantes, decisión de diseño y verificación)
