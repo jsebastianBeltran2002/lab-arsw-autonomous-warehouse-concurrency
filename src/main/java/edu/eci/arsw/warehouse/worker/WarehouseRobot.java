@@ -24,13 +24,13 @@ public class WarehouseRobot extends Thread {
             WarehouseStatistics statistics,
             SimulationControl control,
             long simulationStartNanos) {
-        super("warehouse-robot-" + robotId);
-        this.robotId = robotId;
-        this.packageQueue = packageQueue;
-        this.deliveryRegistry = deliveryRegistry;
-        this.statistics = statistics;
-        this.control = control;
-        this.simulationStartNanos = simulationStartNanos;
+                super("warehouse-robot-" + robotId);
+                this.robotId = robotId;
+                this.packageQueue = packageQueue;
+                this.deliveryRegistry = deliveryRegistry;
+                this.statistics = statistics;
+                this.control = control;
+                this.simulationStartNanos = simulationStartNanos;
     }
 
     @Override
@@ -39,18 +39,15 @@ public class WarehouseRobot extends Thread {
             try {
                 control.awaitIfPaused();
             } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
+                Thread.currentThread()
+                        .interrupt();
                 return;
             }
-
             Parcel parcel = packageQueue.takeNext();
-
             if (parcel == null) {
                 return;
             }
-
             long processingMillis = process(parcel);
-
             long elapsedMillis = (System.nanoTime() - simulationStartNanos) / 1_000_000L;
             deliveryRegistry.register(robotId, parcel.id(), elapsedMillis);
             statistics.recordProcessed(processingMillis);
@@ -60,10 +57,12 @@ public class WarehouseRobot extends Thread {
     private long process(Parcel parcel) {
         long started = System.nanoTime();
         try {
-            int jitter = ThreadLocalRandom.current().nextInt(0, 8);
+            int jitter = ThreadLocalRandom.current()
+                                          .nextInt(0, 8);
             Thread.sleep(parcel.processingMillis() + jitter);
         } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
+            Thread.currentThread()
+                    .interrupt();
         }
         return (System.nanoTime() - started) / 1_000_000L;
     }

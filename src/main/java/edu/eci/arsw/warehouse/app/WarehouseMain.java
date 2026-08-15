@@ -22,21 +22,20 @@ public final class WarehouseMain {
 
         simulation.awaitCompletion();
 
-        System.out.println("\n--- FINAL REPORT ---");
+        System.out.println("\nFINAL REPORT");
         printSnapshot(simulation.snapshot());
-        System.out.println("--------------------\n");
     }
 
     static void printSnapshot(WarehouseSnapshot snapshot) {
-        System.out.printf("Initial parcels : %d%n", snapshot.initialParcels());
-        System.out.printf("Pending parcels : %d%n", snapshot.pendingParcels());
-        System.out.printf("Processed count : %d%n", snapshot.processedParcels());
-        System.out.printf("Registry size   : %d%n", snapshot.deliveries().size());
+        System.out.printf("Initial parcels: %d%n", snapshot.initialParcels());
+        System.out.printf("Pending parcels: %d%n", snapshot.pendingParcels());
+        System.out.printf("Processed count: %d%n", snapshot.processedParcels());
+        System.out.printf("Registry size: %d%n", snapshot.deliveries().size());
 
         snapshot.deliveries().stream()
                 .min(Comparator.comparingInt(DeliveryRecord::position))
                 .ifPresent(first -> System.out.printf(
-                        "Current leader  : Robot-%02d / parcel %d / position %d%n",
+                        "Current leader: Robot-%02d / parcel %d / position %d%n",
                         first.robotId(), first.parcelId(), first.position()));
     }
 }

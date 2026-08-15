@@ -20,44 +20,31 @@ public final class InvariantChecker {
             positions.add(record.position());
         }
 
-        boolean uniqueParcelIds = parcelIds.size() == snapshot.deliveries().size();
-        boolean uniquePositions = positions.size() == snapshot.deliveries().size();
+        boolean uniqueParcelIds = parcelIds.size() == snapshot.deliveries()
+                                                              .size();
+        boolean uniquePositions = positions.size() == snapshot.deliveries()
+                                                              .size();
         boolean contiguousPositions = true;
-        for (int expected = 1; expected <= snapshot.deliveries().size(); expected++) {
+        for (int expected = 1; expected <= snapshot.deliveries()
+                                                   .size(); expected++) {
             if (!positions.contains(expected)) {
                 contiguousPositions = false;
                 break;
             }
         }
 
-        boolean processedMatchesRegistry = snapshot.processedParcels() == snapshot.deliveries().size();
+        boolean processedMatchesRegistry = snapshot.processedParcels() == snapshot.deliveries()
+                                                                                  .size();
         boolean allParcelsAccountedFor =
-                snapshot.pendingParcels() + snapshot.deliveries().size() == snapshot.initialParcels();
+                snapshot.pendingParcels() + snapshot.deliveries()
+                                                    .size() == snapshot.initialParcels();
 
-        boolean valid = uniqueParcelIds
-                && uniquePositions
-                && contiguousPositions
-                && processedMatchesRegistry
-                && allParcelsAccountedFor
-                && snapshot.pendingParcels() == 0
-                && snapshot.deliveries().size() == snapshot.initialParcels();
+        boolean valid = uniqueParcelIds && uniquePositions && contiguousPositions && processedMatchesRegistry && allParcelsAccountedFor && snapshot.pendingParcels() == 0 && snapshot.deliveries()
+                                                                                                                                                                                     .size() == snapshot.initialParcels();
 
-        String detail = "pending=%d, processedCounter=%d, registry=%d, uniqueParcels=%d, uniquePositions=%d, positionsContiguous=%s"
-                .formatted(
-                        snapshot.pendingParcels(),
-                        snapshot.processedParcels(),
-                        snapshot.deliveries().size(),
-                        parcelIds.size(),
-                        positions.size(),
-                        contiguousPositions);
+        String detail = "pending=%d, processedCounter=%d, registry=%d, uniqueParcels=%d, uniquePositions=%d, positionsContiguous=%s".formatted(snapshot.pendingParcels(), snapshot.processedParcels(), snapshot.deliveries()
+                                                                                                                                                                                                               .size(), parcelIds.size(), positions.size(), contiguousPositions);
 
-        return new InvariantReport(
-                valid,
-                allParcelsAccountedFor,
-                uniqueParcelIds,
-                uniquePositions,
-                contiguousPositions,
-                processedMatchesRegistry,
-                detail);
+        return new InvariantReport(valid, allParcelsAccountedFor, uniqueParcelIds, uniquePositions, contiguousPositions, processedMatchesRegistry, detail);
     }
 }

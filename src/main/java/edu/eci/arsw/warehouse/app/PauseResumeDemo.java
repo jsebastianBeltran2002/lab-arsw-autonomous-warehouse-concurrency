@@ -14,7 +14,7 @@ public final class PauseResumeDemo {
         simulation.pause();
         Thread.sleep(100);
 
-        System.out.println("\n--- PAUSED SNAPSHOT ---");
+        System.out.println("\nPAUSED SNAPSHOT");
         WarehouseMain.printSnapshot(simulation.snapshot());
         System.out.println("Simulation paused = " + simulation.isPaused());
 
@@ -22,7 +22,7 @@ public final class PauseResumeDemo {
         simulation.resume();
         simulation.awaitCompletion();
 
-        System.out.println("\n--- FINAL SNAPSHOT ---");
+        System.out.println("\nFINAL SNAPSHOT");
         WarehouseMain.printSnapshot(simulation.snapshot());
     }
 }

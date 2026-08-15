@@ -2,7 +2,6 @@ package edu.eci.arsw.warehouse.core;
 
 
 public class SimulationControl {
-
     private boolean paused;
 
     public synchronized void pause() {
